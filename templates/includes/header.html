@@ -1,0 +1,19 @@
+<nav class="light-blue">
+    <div class="nav-wrapper">
+        <div class="col s12">
+            {% if request.user.is_authenticated %}
+                <a href="#!" class="brand-logo">{{ request.user.username }}</a>
+            {% endif %}
+            <ul class="right hide-on-med-and-down"></li>
+                {% if not request.user.is_authenticated %}
+                    <li><a href="/auth/">Authorization</a></li>
+                    <li><a href="/signup/">Registration</a></li>
+                {% endif %}
+
+                {% if request.user.is_authenticated %}
+                    <li><a href="/logout/">Logout</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

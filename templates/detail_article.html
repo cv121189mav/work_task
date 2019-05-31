@@ -1,0 +1,36 @@
+{% extends 'base_blog.html' %}
+
+{% block content %}
+    <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <div class="card-panel grey lighten-5 z-depth-1">
+            <div class="row valign-wrapper">
+                <div class="col s2">
+                    <img src="/media/{{ article.image }}" alt="" class="responsive-img">
+                </div>
+                <div class="col s10">
+                    <h1>{{ article.title }}</h1>
+                    <span class="black-text">
+                 {{ article.body }}
+              </span>
+                </div>
+            </div>
+        </div>
+        <h5>Comments</h5>
+        <div class="row">
+            <div class="col s6">
+                <form action="/comment_add/" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{ article.id }}" name="article_id">
+                    <input id="text" type="text" name="text">
+                    <button id="add-comment">Add comment</button>
+                </form>
+            </div>
+        </div>
+        <ul class="collection">
+            {% for cm in  content %}
+                <li class="collection-item">{{ cm.user.username }}: {{ cm.text }}</li>
+            {% endfor %}
+            {% include 'includes/paginations.html' %}
+        </ul>
+    </div>
+{% endblock content %}
