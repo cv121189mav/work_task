@@ -1,0 +1,69 @@
+1. Write a function that takes as a parameters number1(int), number2(int) and number3. (e.g. handle_numbers(number1, number2, number3))
+Function need to return the count of integers that are divisible by number3 in range [number1, number2]
+Example:
+number1 = 1
+number2 = 10
+number3 = 2
+
+solution:
+
+def handle_numbers(num1: int, num2: int, num3) -> int:
+    return len({i for i in range(num1, num2 + 1) if i % num3 == 0}) 
+
+==========
+2. Write a function that takes sentense as a parameter (e.g. handle_string(value)) and count number of letters and digits.
+Example:
+value = "Hello world! 123!"
+
+Result:
+Letters -  10
+Digits -  3
+
+solution:
+
+def handle_string(value):
+    v = []
+    integers = ''.join(x for x in value if x.isdigit())
+    literals = [v.append(i) for i in value if i.isalpha()]
+    print("Digits - ", str(len(integers)))
+    print("Letters - ", str(len(literals)))
+    
+or
+
+def handle_string(val: str) -> dict:
+    return {
+        'numbers': len(re.findall('[0-9]', val)),
+        'letters': len(re.findall('[a-zA-Z]', val)),
+    }
+   
+==========
+3. Write a function that takes list of tuples (e.g. handle_list_of_tuples(list)) and sort it based on the next rules:
+name / age / height / weight
+Example:
+list = [
+    ("Tom", "19", "167", "54"), 
+    ("Jony", "24", "180", "69"),
+    ("Json", "21", "185", "75") 
+    ("John", "27", "190", "87"), 
+    ("Jony", "24", "191", "98"), 
+    ]
+    
+solution:    
+    
+def handle_list_of_tuples(tp_list: list) -> list:
+    tp_list.sort(key=lambda tmp: str(tmp[0]), reverse=True)  # Sort by name
+    tp_list.sort(key=lambda tmp: int(tmp[1]), reverse=True)  # Sort by age
+    tp_list.sort(key=lambda tmp: float(tmp[2]), reverse=True)  # Sort by height
+    tp_list.sort(key=lambda tmp: float(tmp[3]), reverse=True)  # Sort by weight
+
+    return tp_list
+    
+if __name__ == "__main__":
+
+    test_list = [
+        ("Tom", "19", "167", "54"),
+        ("Jony", "24", "180", "69"),
+        ("Json", "21", "185", "75"),
+        ("John", "27", "190", "87"),
+        ("Jony", "24", "191", "98"),
+    ]
