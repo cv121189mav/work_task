@@ -30,6 +30,7 @@ def handle_string(value):
     
 or
 
+import re
 def handle_string(val: str) -> dict:
     return {
         'numbers': len(re.findall('[0-9]', val)),
